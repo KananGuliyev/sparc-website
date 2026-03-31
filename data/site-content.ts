@@ -22,24 +22,37 @@ export const siteContent = {
     city: "Boston, MA",
     email: "sparc@studentorgs.suffolk.edu",
     heroLine: "Suffolk University · Boston",
-    heroTitle: "Suffolk Programming, AI and Research Club",
+    heroTitle: "Build Real Skills in AI, Programming, and Research",
     heroDescription:
-      "SPARC is a student organization for students interested in programming, artificial intelligence, and research. We provide a welcoming place to learn, collaborate, and build meaningful projects together.",
+      "SPARC is a welcoming Suffolk student community where members learn by doing through project teams, workshops, and peer mentorship.",
+    heroSecondary:
+      "Whether you are new to coding or already experienced, you can contribute, grow your portfolio, and connect with students who care about responsible technology.",
   },
   links: {
-    joinForm: null as string | null, // TODO: replace with official SPARC membership form URL
-    eventCalendar: null as string | null, // TODO: replace with official SPARC event calendar URL
+    joinForm: "/contact", // Fallback: route students to contact until official form URL is available
+    eventCalendar: "/events", // Fallback: use Events page until official calendar URL is available
   },
   socials: {
-    linkedin: null, // TODO: replace with official SPARC LinkedIn URL
-    instagram: null, // TODO: replace with official SPARC Instagram URL
-    discord: null, // TODO: replace with official SPARC Discord invite URL
+    linkedin: "/contact", // Fallback: keep students on official contact path
+    instagram: "/contact", // TODO: replace with official SPARC Instagram URL
+    discord: "/contact", // TODO: replace with official SPARC Discord invite URL
   } satisfies SocialLinks,
   homeHighlights: [
-    "Open to all majors and experience levels",
-    "Weekly meetings, workshops, and project sessions",
-    "Hands-on AI and software projects with mentorship",
+    "Open to all majors and all experience levels",
+    "Weekly workshops, speaker sessions, and project meetings",
+    "Hands-on work that builds confidence and portfolio-ready experience",
   ],
+  credibilitySignals: [
+    "Student-led and community-driven at Suffolk University",
+    "Practical workshops and collaborative projects every semester",
+    "Welcoming environment focused on growth, ethics, and teamwork",
+  ],
+  homeWhoWeAre:
+    "We are an interdisciplinary community of Suffolk students who learn together by building projects, discussing research, and supporting one another. SPARC gives students a professional but approachable space to ask questions, try new ideas, and make steady progress.",
+  joinSummary:
+    "Join to gain hands-on experience, mentorship, and a strong peer network that supports your academic and career goals.",
+  contactSummary:
+    "Questions about membership, partnerships, or events? Our student leadership team is responsive and happy to help.",
   upcomingEvents: [
     {
       id: "sparc-website-dev-2",

@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { siteContent } from "@/data/site-content";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const mobileMenuId = "mobile-primary-navigation";
+    const pathname = usePathname();
 
     return (
         <header className="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur-sm">
@@ -29,13 +31,13 @@ export default function Navbar() {
                 </Link>
 
                 <nav className="hidden items-center gap-1 text-sm font-medium lg:flex">
-                    <NavLink href="/">Home</NavLink>
-                    <NavLink href="/about">About</NavLink>
-                    <NavLink href="/team">Team</NavLink>
-                    <NavLink href="/events">Events</NavLink>
-                    <NavLink href="/projects">Projects</NavLink>
-                    <NavLink href="/join">Join</NavLink>
-                    <NavLink href="/contact">Contact</NavLink>
+                    <NavLink href="/" isActive={pathname === "/"}>Home</NavLink>
+                    <NavLink href="/about" isActive={pathname === "/about"}>About</NavLink>
+                    <NavLink href="/team" isActive={pathname === "/team"}>Team</NavLink>
+                    <NavLink href="/events" isActive={pathname === "/events"}>Events</NavLink>
+                    <NavLink href="/projects" isActive={pathname === "/projects"}>Projects</NavLink>
+                    <NavLink href="/join" isActive={pathname === "/join"}>Join</NavLink>
+                    <NavLink href="/contact" isActive={pathname === "/contact"}>Contact</NavLink>
                 </nav>
 
                 <div className="flex items-center gap-2">
@@ -43,7 +45,7 @@ export default function Navbar() {
                     <Button
                         asChild
                         size="sm"
-                        className="hidden lg:inline-flex"
+                        className="hidden lg:inline-flex shadow-sm"
                     >
                         <Link href="/join">Join</Link>
                     </Button>
@@ -68,13 +70,13 @@ export default function Navbar() {
             {mobileMenuOpen && (
                 <div className="border-t border-border bg-surface/95 backdrop-blur-sm lg:hidden">
                     <nav id={mobileMenuId} className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 text-sm font-medium">
-                        <MobileNavLink href="/" onClick={() => setMobileMenuOpen(false)}>Home</MobileNavLink>
-                        <MobileNavLink href="/about" onClick={() => setMobileMenuOpen(false)}>About</MobileNavLink>
-                        <MobileNavLink href="/team" onClick={() => setMobileMenuOpen(false)}>Team</MobileNavLink>
-                        <MobileNavLink href="/events" onClick={() => setMobileMenuOpen(false)}>Events</MobileNavLink>
-                        <MobileNavLink href="/projects" onClick={() => setMobileMenuOpen(false)}>Projects</MobileNavLink>
-                        <MobileNavLink href="/join" onClick={() => setMobileMenuOpen(false)}>Join</MobileNavLink>
-                        <MobileNavLink href="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</MobileNavLink>
+                        <MobileNavLink href="/" isActive={pathname === "/"} onClick={() => setMobileMenuOpen(false)}>Home</MobileNavLink>
+                        <MobileNavLink href="/about" isActive={pathname === "/about"} onClick={() => setMobileMenuOpen(false)}>About</MobileNavLink>
+                        <MobileNavLink href="/team" isActive={pathname === "/team"} onClick={() => setMobileMenuOpen(false)}>Team</MobileNavLink>
+                        <MobileNavLink href="/events" isActive={pathname === "/events"} onClick={() => setMobileMenuOpen(false)}>Events</MobileNavLink>
+                        <MobileNavLink href="/projects" isActive={pathname === "/projects"} onClick={() => setMobileMenuOpen(false)}>Projects</MobileNavLink>
+                        <MobileNavLink href="/join" isActive={pathname === "/join"} onClick={() => setMobileMenuOpen(false)}>Join</MobileNavLink>
+                        <MobileNavLink href="/contact" isActive={pathname === "/contact"} onClick={() => setMobileMenuOpen(false)}>Contact</MobileNavLink>
                         {/*<div className="border-t border-zinc-200 pt-3 dark:border-zinc-800 mt-2">
                             <Button
                                 asChild
@@ -93,9 +95,11 @@ export default function Navbar() {
 
 function NavLink({
   href,
+  isActive,
   children,
 }: {
   href: string;
+  isActive?: boolean;
   children: React.ReactNode;
 }) {
   return (
@@ -103,7 +107,11 @@ function NavLink({
       asChild
       variant="ghost"
       size="sm"
-      className="px-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+      className={`px-3 text-sm font-medium transition-colors ${
+        isActive
+          ? "bg-muted text-foreground"
+          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+      }`}
     >
       <Link href={href}>{children}</Link>
     </Button>
@@ -112,10 +120,12 @@ function NavLink({
 
 function MobileNavLink({
   href,
+  isActive,
   children,
   onClick,
 }: {
   href: string;
+  isActive?: boolean;
   children: React.ReactNode;
   onClick?: () => void;
 }) {
@@ -123,7 +133,11 @@ function MobileNavLink({
     <Button
       asChild
       variant="ghost"
-      className="justify-start px-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+      className={`justify-start px-3 text-sm font-medium transition-colors ${
+        isActive
+          ? "bg-muted text-foreground"
+          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+      }`}
       onClick={onClick}
     >
       <Link href={href}>{children}</Link>

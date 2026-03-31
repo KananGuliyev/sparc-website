@@ -93,10 +93,22 @@ export default function TeamPage() {
 
         <section className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {team.map((member) => (
-            <Card key={member.name}>
-              <CardHeader className="border-b pb-0">
+            <Card key={member.name} className="relative overflow-hidden">
+              <div className="pointer-events-none absolute inset-0">
+                <Image
+                  unoptimized
+                  src={member.image}
+                  alt=""
+                  fill
+                  aria-hidden
+                  className="object-cover opacity-20"
+                />
+                <div className="absolute inset-0 bg-white/75 dark:bg-zinc-950/75" />
+              </div>
+
+              <CardHeader className="relative z-10 border-b pb-0">
                 <div className="flex items-start gap-2">
-                  <div className="relative w-16 sm:w-24 aspect-square flex-shrink-0 overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900">
+                  <div className="relative w-16 sm:w-24 aspect-square shrink-0 overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900">
                     <Image
                       unoptimized
                       src={member.image}
@@ -107,7 +119,7 @@ export default function TeamPage() {
                   </div>
                   <div className="space-y-0.5 px-2 sm:px-4 min-w-0">
                     <div>
-                      <CardTitle className="text-xs sm:text-base break-words">
+                      <CardTitle className="text-xs sm:text-base wrap-break-word">
                         {member.name}
                         {member.nickname && (
                           <span className="text-zinc-500 dark:text-zinc-400 font-normal text-[10px] sm:text-xs">
@@ -124,7 +136,7 @@ export default function TeamPage() {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="mb-2 sm:mt-4">
+              <CardContent className="relative z-10 mb-2 sm:mt-4">
                 {member.website && (
                   <Button asChild size="xs" variant="outline" className="mr-2 text-xs">
                     <a href={member.website} target="_blank" rel="noreferrer">
@@ -140,7 +152,7 @@ export default function TeamPage() {
                   </Button>
                 )}
               </CardContent>
-              <CardContent className="text-[11px] sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
+              <CardContent className="relative z-10 text-[11px] sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
                 {member.blurb}
               </CardContent>
               

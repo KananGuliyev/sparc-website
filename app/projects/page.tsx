@@ -26,7 +26,7 @@ export default function ProjectsPage() {
       ],
     },
     {
-      name: "CollegiateX Internship",
+      name: "CollegiateX Mobile App",
       status: "Completed",
       timeframe: "Fall 2025",
       link: "https://collegiatex.com/",
@@ -82,7 +82,7 @@ export default function ProjectsPage() {
               size="sm"
               className="group flex h-full flex-col overflow-hidden border-zinc-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-zinc-800/80"
             >
-              <div className="relative -mx-4 -mt-4 mb-3 h-36 overflow-hidden sm:h-40">
+              <div className="relative -mx-4 -mt-4 mb-4 h-36 overflow-hidden sm:h-40">
                 <Image
                   unoptimized
                   src={project.image}
@@ -92,38 +92,41 @@ export default function ProjectsPage() {
                 />
               </div>
 
-              <CardHeader className="mb-2 border-b-0 pb-0">
-                <div className="flex items-start sm:items-center justify-between gap-2">
-                  <CardTitle className="text-xs sm:text-sm leading-tight">{project.name}</CardTitle>
-                  <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 whitespace-nowrap shrink-0">
+              <CardHeader className="mb-3 pb-3 border-b border-zinc-100 dark:border-zinc-800">
+                <div className="flex items-start sm:items-center justify-between gap-3">
+                  <CardTitle className="text-sm sm:text-base leading-snug">{project.name}</CardTitle>
+                  <span className="rounded-full bg-zinc-100 px-2.5 py-1 text-[10px] sm:text-xs font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 whitespace-nowrap shrink-0">
                     {project.status}
                   </span>
                 </div>
-                <CardDescription className="text-[10px] sm:text-[11px] uppercase tracking-[0.18em]">
+                <CardDescription className="text-xs sm:text-sm uppercase tracking-widest pt-1">
                   {project.timeframe}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="text-xs sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
+
+              <CardContent className="mb-4 text-sm sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
                 {project.description}
               </CardContent>
-              <CardContent className="pt-1">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400">
+
+              <CardContent className="mb-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400 mb-3">
                   What We Did
                 </p>
-                <ul className="mt-1 space-y-1.5 text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
+                <ul className="space-y-2.5 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
                   {project.highlights.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500 dark:bg-zinc-400" />
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </CardContent>
+
               {project.link && (
-                <CardContent className="mt-auto pt-2">
-                  <Button asChild size="sm" variant="outline" className="text-xs">
+                <CardContent className="mt-auto pt-3 border-t border-zinc-100 dark:border-zinc-800">
+                  <Button asChild size="sm" variant="outline" className="text-xs w-full">
                     <a href={project.link} target="_blank" rel="noreferrer">
-                      View
+                      View Project
                     </a>
                   </Button>
                 </CardContent>

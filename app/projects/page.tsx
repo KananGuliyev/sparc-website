@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { link } from "fs";
 
 export default function ProjectsPage() {
   const projects = [
@@ -17,24 +16,42 @@ export default function ProjectsPage() {
       status: "Completed",
       timeframe: "Spring 2025",
       link: "https://github.com/MohammedAlTal/Suffolk_CSMA",
+      image: "/campus-map-home.png",
       description:
         "Our first ever group project focused on creating a smart campus navigation system and club finder to enhance student experience.",
+      highlights: [
+        "Built an interactive campus map and place search experience.",
+        "Added club discovery and matching based on student interests.",
+        "Presented a complete working prototype with team documentation.",
+      ],
     },
     {
       name: "CollegiateX Internship",
       status: "Completed",
       timeframe: "Fall 2025",
       link: "https://collegiatex.com/",
+      image: "/collegiatex-pc-home.png",
       description:
         "In the fall 2025, Mohammed, the president of SPARC, collaborated with CollegiateX and granted everyone at the club an internship to build their mobile app.",
+      highlights: [
+        "Collaborated with an external startup in a real internship setting.",
+        "Contributed features and UX flows for the CollegiateX mobile app.",
+        "Practiced agile teamwork, code reviews, and stakeholder feedback cycles.",
+      ],
     },
     {
       name: "SPARC Website",
       status: "Idea / Proposal",
       timeframe: "Spring 2026",
       link: "https://sparc-su.vercel.app",
+      image: "/sparc-website-home.png",
       description:
         "A group of SPARC members is proposing to build and maintain a public website for the club, showcasing our mission, team, projects, and resources for members. This would be a great opportunity to learn web development and create something that represents SPARC to the wider community.",
+      highlights: [
+        "Defined the site information architecture and page structure.",
+        "Implemented reusable UI components with responsive design.",
+        "Planned long-term maintenance and contribution workflow for members.",
+      ],
     },
   ];
 
@@ -58,13 +75,27 @@ export default function ProjectsPage() {
           />
         </div>
 
-        <section className="grid gap-3 sm:gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 md:gap-6">
           {projects.map((project) => (
-            <Card key={project.name} size="sm" className="flex flex-col">
+            <Card
+              key={project.name}
+              size="sm"
+              className="group flex h-full flex-col overflow-hidden border-zinc-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-zinc-800/80"
+            >
+              <div className="relative -mx-4 -mt-4 mb-3 h-36 overflow-hidden sm:h-40">
+                <Image
+                  unoptimized
+                  src={project.image}
+                  alt={`${project.name} preview`}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+
               <CardHeader className="mb-2 border-b-0 pb-0">
                 <div className="flex items-start sm:items-center justify-between gap-2">
                   <CardTitle className="text-xs sm:text-sm leading-tight">{project.name}</CardTitle>
-                  <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 whitespace-nowrap flex-shrink-0">
+                  <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 whitespace-nowrap shrink-0">
                     {project.status}
                   </span>
                 </div>
@@ -75,9 +106,22 @@ export default function ProjectsPage() {
               <CardContent className="text-xs sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
                 {project.description}
               </CardContent>
+              <CardContent className="pt-1">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400">
+                  What We Did
+                </p>
+                <ul className="mt-1 space-y-1.5 text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
+                  {project.highlights.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500 dark:bg-zinc-400" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
               {project.link && (
                 <CardContent className="mt-auto pt-2">
-                  <Button size="sm" variant="outline" className="text-xs">
+                  <Button asChild size="sm" variant="outline" className="text-xs">
                     <a href={project.link} target="_blank" rel="noreferrer">
                       View
                     </a>

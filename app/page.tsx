@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import WritingText from "@/components/ui/writing-text";
 
 export default function Home() {
   return (
@@ -9,10 +11,8 @@ export default function Home() {
             <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
               Suffolk University · Student Club
             </p>
-            <h1 className="text-balance text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
-              Suffolk Programming, AI & Research Club
-            </h1>
-            <p className="max-w-xl text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+            <WritingText className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight" text="Suffolk Programming, AI & Research Club" />
+            <p className="mt-4 max-w-xl text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
               SPARC is a student club at Suffolk University focused on applied machine learning and AI research. We build real projects, host workshops, and create a space for students across majors to explore the world of AI together.
             </p>
           </div>
@@ -29,24 +29,36 @@ export default function Home() {
         </div>
 
         <section className="grid gap-4 sm:gap-6 md:grid-cols-3">
-          <div className="rounded-xl border border-zinc-200 bg-white/80 p-3 sm:p-4 text-xs sm:text-sm shadow-sm dark:border-zinc-800 dark:bg-zinc-900/80">
+          <Link
+            href="/events"
+            className="group rounded-xl border border-zinc-200 bg-white/80 p-3 text-xs shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:p-4 sm:text-sm dark:border-zinc-800 dark:bg-zinc-900/80 dark:focus-visible:ring-zinc-600 dark:focus-visible:ring-offset-zinc-950"
+            aria-label="Go to Research and Learning events"
+          >
             <h2 className="mb-2 text-xs sm:text-sm font-semibold">Research & Learning</h2>
             <p className="text-[11px] sm:text-xs text-zinc-600 dark:text-zinc-400">
               Explore the latest AI and machine learning research through discussions, workshops, and hands-on learning.
             </p>
-          </div>
-          <div className="rounded-xl border border-zinc-200 bg-white/80 p-3 sm:p-4 text-xs sm:text-sm shadow-sm dark:border-zinc-800 dark:bg-zinc-900/80">
+          </Link>
+          <Link
+            href="/projects"
+            className="group rounded-xl border border-zinc-200 bg-white/80 p-3 text-xs shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:p-4 sm:text-sm dark:border-zinc-800 dark:bg-zinc-900/80 dark:focus-visible:ring-zinc-600 dark:focus-visible:ring-offset-zinc-950"
+            aria-label="Go to Projects"
+          >
             <h2 className="mb-2 text-xs sm:text-sm font-semibold">Projects</h2>
             <p className="text-[11px] sm:text-xs text-zinc-600 dark:text-zinc-400">
               Build real-world AI applications, from generative models to chatbots. All skill levels welcome.
             </p>
-          </div>
-          <div className="rounded-xl border border-zinc-200 bg-white/80 p-3 sm:p-4 text-xs sm:text-sm shadow-sm dark:border-zinc-800 dark:bg-zinc-900/80">
+          </Link>
+          <Link
+            href="/join"
+            className="group rounded-xl border border-zinc-200 bg-white/80 p-3 text-xs shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:p-4 sm:text-sm dark:border-zinc-800 dark:bg-zinc-900/80 dark:focus-visible:ring-zinc-600 dark:focus-visible:ring-offset-zinc-950"
+            aria-label="Go to Community and join page"
+          >
             <h2 className="mb-2 text-xs sm:text-sm font-semibold">Community</h2>
             <p className="text-[11px] sm:text-xs text-zinc-600 dark:text-zinc-400">
               Connect with fellow students interested in AI. Social events, panels, and collaboration opportunities.
             </p>
-          </div>
+          </Link>
         </section>
 
         <div className="relative h-48 sm:h-56 rounded-2xl bg-transparent md:h-64">

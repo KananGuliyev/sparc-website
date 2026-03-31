@@ -75,64 +75,70 @@ export default function ProjectsPage() {
           />
         </div>
 
-        <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 md:gap-6">
-          {projects.map((project) => (
-            <Card
-              key={project.name}
-              size="sm"
-              className="group flex h-full flex-col overflow-hidden border-zinc-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-zinc-800/80"
-            >
-              <div className="relative -mx-4 -mt-4 mb-4 h-36 overflow-hidden sm:h-40">
-                <Image
-                  unoptimized
-                  src={project.image}
-                  alt={`${project.name} preview`}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-
-              <CardHeader className="mb-3 pb-3 border-b border-zinc-100 dark:border-zinc-800">
-                <div className="flex items-start sm:items-center justify-between gap-3">
-                  <CardTitle className="text-sm sm:text-base leading-snug">{project.name}</CardTitle>
-                  <span className="rounded-full bg-zinc-100 px-2.5 py-1 text-[10px] sm:text-xs font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 whitespace-nowrap shrink-0">
-                    {project.status}
-                  </span>
+        <section className="space-y-4">
+          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight">Catalog</h1>
+          <p className="max-w-2xl mb-8 text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+            What we have built so far and what we're planning next. Each project is a collaborative effort by SPARC members to apply AI concepts to real problems and create something meaningful for our community.
+          </p>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 md:gap-6">
+            {projects.map((project) => (
+              <Card
+                key={project.name}
+                size="sm"
+                className="group flex h-full flex-col overflow-hidden border-zinc-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-zinc-800/80"
+              >
+                <div className="relative -mx-4 -mt-4 mb-4 h-36 overflow-hidden sm:h-40">
+                  <Image
+                    unoptimized
+                    src={project.image}
+                    alt={`${project.name} preview`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
-                <CardDescription className="text-xs sm:text-sm uppercase tracking-widest pt-1">
-                  {project.timeframe}
-                </CardDescription>
-              </CardHeader>
 
-              <CardContent className="mb-4 text-sm sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                {project.description}
-              </CardContent>
+                <CardHeader className="mb-3 pb-3 border-b border-zinc-100 dark:border-zinc-800">
+                  <div className="flex items-start sm:items-center justify-between gap-3">
+                    <CardTitle className="text-sm sm:text-base leading-snug">{project.name}</CardTitle>
+                    <span className="rounded-full bg-zinc-100 px-2.5 py-1 text-[10px] sm:text-xs font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 whitespace-nowrap shrink-0">
+                      {project.status}
+                    </span>
+                  </div>
+                  <CardDescription className="text-xs sm:text-sm uppercase tracking-widest pt-1">
+                    {project.timeframe}
+                  </CardDescription>
+                </CardHeader>
 
-              <CardContent className="mb-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400 mb-3">
-                  What We Did
-                </p>
-                <ul className="space-y-2.5 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
-                  {project.highlights.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-
-              {project.link && (
-                <CardContent className="mt-auto pt-3 border-t border-zinc-100 dark:border-zinc-800">
-                  <Button asChild size="sm" variant="outline" className="text-xs w-full">
-                    <a href={project.link} target="_blank" rel="noreferrer">
-                      View Project
-                    </a>
-                  </Button>
+                <CardContent className="mb-4 text-sm sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                  {project.description}
                 </CardContent>
-              )}
-            </Card>
-          ))}
+
+                <CardContent className="mb-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400 mb-3">
+                    What We Did
+                  </p>
+                  <ul className="space-y-2.5 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+                    {project.highlights.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+
+                {project.link && (
+                  <CardContent className="mt-auto pt-3 border-t border-zinc-100 dark:border-zinc-800">
+                    <Button asChild size="sm" variant="outline" className="text-xs w-full">
+                      <a href={project.link} target="_blank" rel="noreferrer">
+                        View Project
+                      </a>
+                    </Button>
+                  </CardContent>
+                )}
+              </Card>
+            ))}
+          </div>
         </section>
 
         <section>

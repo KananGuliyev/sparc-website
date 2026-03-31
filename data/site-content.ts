@@ -22,11 +22,12 @@ export const siteContent = {
     city: "Boston, MA",
     email: "sparc@studentorgs.suffolk.edu",
     heroLine: "Suffolk University · Boston",
-    heroTitle: "Build Real Skills in AI, Programming, and Research",
+    heroTitle: "For Suffolk Students Who Want to Build with AI and Software",
     heroDescription:
-      "SPARC is a welcoming Suffolk student community where members learn by doing through project teams, workshops, and peer mentorship.",
+      "SPARC is Suffolk University's Programming, AI and Research Club. Members gain practical experience through project teams, workshops, and peer mentorship.",
     heroSecondary:
-      "Whether you are new to coding or already experienced, you can contribute, grow your portfolio, and connect with students who care about responsible technology.",
+      "From first-year beginners to advanced builders, students join SPARC to grow skills, strengthen portfolios, and contribute to meaningful work with a supportive community.",
+    heroBadge: "Official Suffolk University Student Organization",
   },
   links: {
     joinForm: "/contact", // Fallback: route students to contact until official form URL is available

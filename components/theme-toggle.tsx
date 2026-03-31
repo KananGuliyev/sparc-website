@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const themes = [
   { key: "light", label: "Default", color: "#ffffff", borderColor: "#d4d4d8" },
@@ -12,11 +13,21 @@ const themes = [
   { key: "dark", label: "Lights out", color: "#0a0a0a", borderColor: "#3f3f46" },
 ] as const;
 
-export function ThemeToggle() {
+type ThemeToggleProps = {
+  buttonClassName?: string;
+};
+
+export function ThemeToggle({ buttonClassName }: ThemeToggleProps) {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const menuId = "theme-menu";
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setMounted(true), 0);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     function onClick(e: MouseEvent) {
@@ -44,7 +55,13 @@ export function ThemeToggle() {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
-  const Icon = current === "dim" ? CloudMoon : current === "dark" ? Moon : Sun;
+  const Icon = !mounted
+    ? Sun
+    : current === "dim"
+      ? CloudMoon
+      : current === "dark"
+        ? Moon
+        : Sun;
 
   return (
     <div className="relative" ref={ref}>
@@ -52,6 +69,7 @@ export function ThemeToggle() {
         type="button"
         size="icon-sm"
         variant="ghost"
+        className={cn(buttonClassName)}
         aria-label="Theme"
         aria-haspopup="menu"
         aria-expanded={open}

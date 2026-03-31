@@ -14,6 +14,9 @@ export default function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               {siteContent.club.heroLine}
             </p>
+            <p className="inline-flex w-fit items-center rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-foreground">
+              {siteContent.club.heroBadge}
+            </p>
             <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
               {siteContent.club.heroTitle}
             </h1>
@@ -30,6 +33,13 @@ export default function Home() {
               <Button asChild variant="outline" size="lg">
                 <Link href="/events">View Upcoming Events</Link>
               </Button>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-3">
+              {siteContent.credibilitySignals.map((item) => (
+                <p key={item} className="rounded-lg border border-border/70 bg-surface/85 px-3 py-2 text-xs leading-relaxed text-muted-foreground">
+                  {item}
+                </p>
+              ))}
             </div>
           </div>
           <div className="relative h-60 overflow-hidden rounded-2xl border border-border shadow-sm sm:h-64 md:h-72 lg:h-80">
@@ -52,19 +62,6 @@ export default function Home() {
           <div className="grid gap-4 sm:grid-cols-3">
             {siteContent.homeHighlights.map((item) => (
               <Card key={item} size="sm" className="border-border/80">
-                <CardContent className="text-sm leading-relaxed text-muted-foreground">{item}</CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <section className="space-y-4 rounded-2xl border border-border bg-surface p-5 sm:p-6">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-            Club Snapshot
-          </h2>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {siteContent.credibilitySignals.map((item) => (
-              <Card key={item} size="sm" className="bg-muted/30">
                 <CardContent className="text-sm leading-relaxed text-muted-foreground">{item}</CardContent>
               </Card>
             ))}

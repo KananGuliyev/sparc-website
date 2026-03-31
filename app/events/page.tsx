@@ -36,6 +36,23 @@ export default function EventsPage() {
     }
   ];
 
+  const pastRecordings = [
+    {
+      title: "Meeting 1",
+      date: "February 26, 2026",
+      type: "Zoom Recording",
+      link: "https://suffolk.zoom.us/rec/play/YM0vPAyEnmg06qQFb73LIOqeUnd9X67yeQSyNJXdzkEwY0vVwo9RndIrFkl0rmV4UJTNAsH_mx9T8jj5.YWen7KysJWaujsOP?eagerLoadZvaPages=sidemenu.billing.plan_management&accessLevel=meeting&canPlayFromShare=true&from=share_recording_detail&continueMode=true&oldStyle=true&componentName=rec-play&originRequestUrl=https%3A%2F%2Fsuffolk.zoom.us%2Frec%2Fshare%2FjGnuwrQ-G0zXyDXA59_caQ3csajOglqWP7PbkDq0uKWIp-dY-Ty_vTLrIay41wCv.f6L6cPvH2Zs29L60",
+      description: "Development meeting recording covering project updates and implementation discussion.",
+    },
+    {
+      title: "Meeting 2",
+      date: "March 24, 2026",
+      type: "Zoom Recording",
+      link: "https://suffolk.zoom.us/rec/play/OVjfXxrQKRNvOOhjp7zAcx5pHCTUHQ3w2FhEN0SRORkWo7BcFtoH3edi0NKLOeO4xyrcy3jBIX4PxW_n.9Wg9uEz-vEWMVDfa?eagerLoadZvaPages=sidemenu.billing.plan_management&accessLevel=meeting&canPlayFromShare=true&from=share_recording_detail&continueMode=true&oldStyle=true&componentName=rec-play&originRequestUrl=https%3A%2F%2Fsuffolk.zoom.us%2Frec%2Fshare%2FdTUmT8tGpGdRxRpJPIiAIOEHpPA9us7CADcmqsHNAOmGqovD0qOOh9ZsQA_VcujY.BjJrVRW8NNpaCBAk",
+      description: "Development meeting recording focused on planning and next milestones.",
+    },
+  ];
+
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
       <div className="flex min-h-screen flex-col text-zinc-900 dark:text-zinc-50 gap-y-6 sm:gap-y-8">
@@ -112,6 +129,38 @@ export default function EventsPage() {
                 </Card>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
+            Past Zoom Recordings
+          </h2>
+          <div className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2">
+            {pastRecordings.map((recording) => (
+              <Card key={recording.title}>
+                <CardHeader>
+                  <CardTitle className="text-sm sm:text-base">{recording.title}</CardTitle>
+                  <CardDescription className="flex flex-col gap-2 text-xs sm:flex-row sm:items-center sm:justify-between">
+                    <span>{recording.date}</span>
+                    <span className="w-fit rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 sm:text-[11px]">
+                      {recording.type}
+                    </span>
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3 text-xs leading-relaxed text-zinc-700 dark:text-zinc-300 sm:text-xs">
+                  <p>{recording.description}</p>
+                  <a
+                    href={recording.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center rounded-md border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-900 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-900"
+                  >
+                    Watch Recording
+                  </a>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </section>
       </div>

@@ -1,101 +1,112 @@
 import Image from "next/image";
 import Link from "next/link";
-import WritingText from "@/components/ui/writing-text";
-
-const quickLinks = [
-  {
-    href: "/about",
-    title: "About",
-    description: "Learn SPARC's mission, focus areas, and story.",
-    image: "/sparc-3.jpg",
-  },
-  {
-    href: "/contact",
-    title: "Contact",
-    description: "Reach out by email and stay updated on community channels.",
-    image: "/sparc-contact.jpeg",
-  },
-  {
-    href: "/events",
-    title: "Events",
-    description: "See upcoming workshops, panels, and past highlights.",
-    image: "/sparc-events.jpeg",
-  },
-  {
-    href: "/join",
-    title: "Join",
-    description: "Apply to SPARC and learn how recruitment works.",
-    image: "/sparc-join.jpeg",
-  },
-  {
-    href: "/projects",
-    title: "Projects",
-    description: "Explore hands-on projects and proposals from members.",
-    image: "/sparc-projects.jpeg",
-  },
-  {
-    href: "/team",
-    title: "Team",
-    description: "Meet the student leaders and founding members of SPARC.",
-    image: "/sparc-2.jpg",
-  },
-];
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { siteContent } from "@/data/site-content";
+import { UpcomingEventCard } from "@/components/sections/upcoming-event-card";
 
 export default function Home() {
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
-      <div className="flex min-h-screen flex-col text-zinc-900 dark:text-zinc-50 gap-y-6 sm:gap-y-8">
-        <section className="grid gap-6 sm:gap-8 md:grid-cols-[3fr,2fr] md:items-center">
-          <div className="space-y-4">
-            <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
-              Suffolk University · Student Club
+    <main id="main-content" className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
+      <div className="flex min-h-screen flex-col gap-y-8 sm:gap-y-10">
+        <section className="grid gap-6 md:grid-cols-[3fr,2fr] md:items-center">
+          <div className="space-y-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+              {siteContent.club.heroLine}
             </p>
-            <WritingText className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight" text="Suffolk Programming, AI & Research Club" />
-            <p className="mt-4 max-w-xl text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-              SPARC is a student club at Suffolk University focused on applied machine learning and AI research. We build real projects, host workshops, and create a space for students across majors to explore the world of AI together.
+            <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+              {siteContent.club.heroTitle}
+            </h1>
+            <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
+              {siteContent.club.heroDescription}
             </p>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild>
+                <Link href="/join">Join SPARC</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/events">View Upcoming Events</Link>
+              </Button>
+            </div>
+          </div>
+          <div className="relative h-56 overflow-hidden rounded-2xl sm:h-64 md:h-72">
+            <Image
+              src="/sparc-1.jpg"
+              alt="SPARC student members in a collaborative session"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 40vw"
+              className="object-cover"
+            />
           </div>
         </section>
 
-        <div className="relative h-48 sm:h-56 rounded-2xl bg-transparent md:h-64">
-          <Image
-            unoptimized
-            src="/sparc-1.jpg"
-            alt="SPARC Hero Image"
-            fill
-            className="rounded-2xl object-cover"
-          />
-        </div>
+        <section className="grid gap-4 sm:grid-cols-3">
+          {siteContent.homeHighlights.map((item) => (
+            <Card key={item} size="sm">
+              <CardContent className="text-sm text-muted-foreground">{item}</CardContent>
+            </Card>
+          ))}
+        </section>
 
-        <section className="space-y-3">
-          <h2 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
-            Explore Pages
+        <section className="space-y-4">
+          <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            Who We Are
           </h2>
-          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {quickLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="group overflow-hidden rounded-xl border border-zinc-200 bg-white/80 text-xs shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:text-sm dark:border-zinc-800 dark:bg-zinc-900/80 dark:focus-visible:ring-zinc-600 dark:focus-visible:ring-offset-zinc-950"
-                aria-label={`Go to ${item.title} page`}
-              >
-                <div className="relative h-28 sm:h-32">
-                  <Image
-                    unoptimized
-                    src={item.image}
-                    alt={`${item.title} page image`}
-                    fill
-                    className="object-cover transition duration-300 group-hover:scale-[1.03]"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/35 via-black/5 to-transparent" />
-                </div>
-                <div className="space-y-2 p-3 sm:p-4">
-                  <h3 className="text-xs sm:text-sm font-semibold">{item.title}</h3>
-                  <p className="text-[11px] sm:text-xs text-zinc-600 dark:text-zinc-400">{item.description}</p>
-                </div>
-              </Link>
+          <Card>
+            <CardContent className="text-base leading-relaxed text-muted-foreground">
+              We are an interdisciplinary community of Suffolk students who meet regularly to practice technical skills, discuss research, and support one another through hands-on learning. Whether you are just starting out or already experienced, SPARC offers an inclusive environment where your curiosity is valued.
+            </CardContent>
+          </Card>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            Upcoming Events
+          </h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            {siteContent.upcomingEvents.map((event) => (
+              <UpcomingEventCard key={event.id} event={event} />
             ))}
           </div>
+          {siteContent.links.eventCalendar ? (
+            <Button asChild variant="outline">
+              <a href={siteContent.links.eventCalendar} target="_blank" rel="noreferrer">
+                See Full Events Calendar
+              </a>
+            </Button>
+          ) : (
+            <Button asChild variant="outline">
+              <Link href="/events">See Full Events Calendar</Link>
+            </Button>
+          )}
+        </section>
+
+        <section className="grid gap-4 md:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">How to Join</CardTitle>
+              <CardDescription>Open membership for Suffolk students</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-muted-foreground">
+              <p>Submit the join interest form and our leadership team will follow up with next steps within one week.</p>
+              <Button asChild>
+                <Link href="/join">Start Your Application</Link>
+              </Button>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Contact</CardTitle>
+              <CardDescription>Questions, collaborations, or event ideas</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-muted-foreground">
+              <p>Email us directly at {siteContent.club.email}.</p>
+              <Button asChild variant="outline">
+                <Link href="/contact">Contact SPARC</Link>
+              </Button>
+            </CardContent>
+          </Card>
         </section>
       </div>
     </main>

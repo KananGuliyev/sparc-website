@@ -7,92 +7,97 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
+import { siteContent } from "@/data/site-content";
 
 export default function JoinPage() {
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
-      <div className="flex min-h-screen flex-col text-zinc-900 dark:text-zinc-50 gap-y-6 sm:gap-y-8">
-        <section className="grid gap-4 sm:gap-6 md:grid-cols-[3fr,2fr] md:items-center">
+    <main id="main-content" className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
+      <div className="flex min-h-screen flex-col gap-y-8 sm:gap-y-10">
+        <section className="grid gap-4 md:grid-cols-[3fr,2fr] md:items-center">
           <div className="space-y-4">
-            <h1 className="text-xl sm:text-2xl font-semibold tracking-tight">
+            <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               Join SPARC
             </h1>
-            <p className="max-w-xl text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-              Join SPARC to explore machine learning and AI research, work on real projects, and connect with fellow students. All experience levels welcome!
+            <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
+              SPARC welcomes Suffolk students from all majors and backgrounds. Join us to build technical skills, work on projects, and participate in a collaborative learning community.
             </p>
 
-            <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3 text-xs text-zinc-600 dark:text-zinc-400">
-              <span className="rounded-full bg-zinc-100 px-3 py-1 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200">
+            <div className="flex flex-col items-start gap-3 text-sm text-muted-foreground sm:flex-row sm:flex-wrap sm:items-center">
+              <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium uppercase tracking-[0.14em] text-foreground">
                 Recruiting
               </span>
-              <span>We are openly recruiting new members for Spring 2026.</span>
+              <span>Open membership for Spring 2026.</span>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button asChild size="sm" className="text-xs">
-                <a
-                  href="https://example.com/sparc-application"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Apply
-                </a>
-              </Button>
-              <Button asChild size="sm" variant="outline" className="text-xs">
-                <a href="mailto:sparc@studentorgs.suffolk.edu">
-                  Email us with questions
+              {siteContent.links.joinForm ? (
+                <Button asChild>
+                  <a
+                    href={siteContent.links.joinForm}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Submit Interest Form
+                  </a>
+                </Button>
+              ) : (
+                <p className="text-sm text-muted-foreground">
+                  TODO: Add official SPARC membership form URL in `data/site-content.ts`.
+                </p>
+              )}
+              <Button asChild variant="outline">
+                <a href={`mailto:${siteContent.club.email}`}>
+                  Email Questions
                 </a>
               </Button>
             </div>
           </div>
 
-          <div className="relative h-48 sm:h-56 rounded-lg bg-transparent md:h-64">
+          <div className="relative h-56 overflow-hidden rounded-2xl md:h-72">
             <Image
-              unoptimized
               src="/sparc-join.jpeg"
-              alt="SPARC Join Image"
+              alt="Students collaborating during a SPARC club session"
               fill
-              className="rounded-2xl object-cover"
+              sizes="(max-width: 768px) 100vw, 40vw"
+              className="object-cover"
             />
           </div>
 
           <Card size="sm">
             <CardHeader>
-              <CardTitle className="text-sm sm:text-base">Recruitment Process</CardTitle>
-              <CardDescription className="text-xs">How joining works</CardDescription>
+              <CardTitle className="text-base">How Joining Works</CardTitle>
+              <CardDescription>Simple, welcoming process</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-2 text-xs sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
+            <CardContent className="space-y-2 text-sm leading-relaxed text-muted-foreground">
               <p>
-                Simply fill out our application form with some basic info about yourself, your interests, and any relevant experience. Our leadership team will review applications on a rolling basis and follow up with next steps. We typically hold an info session and/or interview to get to know applicants better and answer any questions. We want to make the process as welcoming and low-pressure as possible, so don&apos;t worry about having tons of experience – we value curiosity and enthusiasm above all!
+                Start by completing the interest form with your background and interests. The leadership team reviews submissions on a rolling basis and responds with next steps, usually within one week. Some students may be invited to an orientation chat to learn about projects and available roles.
               </p>
             </CardContent>
           </Card>
         </section>
 
-        <section className="grid gap-3 sm:gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           <Card size="sm">
             <CardHeader className="mb-2 border-b-0 pb-0">
-              <CardTitle className="text-xs sm:text-sm">Who should apply</CardTitle>
+              <CardTitle className="text-sm">Who Should Apply</CardTitle>
             </CardHeader>
-            <CardContent className="text-xs sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
-              Join SPARC if you are passionate about machine learning, AI, and data science. We welcome students from all majors and backgrounds who are eager to learn, collaborate, and contribute to projects and research.
-              attract – by interest, not just major.
+            <CardContent className="text-sm leading-relaxed text-muted-foreground">
+              Students interested in programming, AI, or research are encouraged to apply, regardless of major. We value curiosity, reliability, and willingness to learn.
             </CardContent>
           </Card>
           <Card size="sm">
             <CardHeader className="mb-2 border-b-0 pb-0">
-              <CardTitle className="text-xs sm:text-sm">Time commitment</CardTitle>
+              <CardTitle className="text-sm">Time Commitment</CardTitle>
             </CardHeader>
-            <CardContent className="text-xs sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
-              We understand everyone has different schedules and commitments, so we don&apos;t require a specific time commitment. We encourage members to get involved in whatever way works best for them, whether that&apos;s attending meetings, contributing to projects, or just participating in discussions. We do ask that members stay engaged and communicate with the team about their availability and interests.
+            <CardContent className="text-sm leading-relaxed text-muted-foreground">
+              Weekly attendance is encouraged, but we understand students have different schedules. Members can contribute through meetings, asynchronous project work, or event support.
             </CardContent>
           </Card>
           <Card size="sm">
             <CardHeader className="mb-2 border-b-0 pb-0">
-              <CardTitle className="text-xs sm:text-sm">Accessibility</CardTitle>
+              <CardTitle className="text-sm">Accessibility</CardTitle>
             </CardHeader>
-            <CardContent className="text-xs sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
-              SPARC is committed to being welcoming and accessible to all students. No prior experience is required to join, and we offer recorded sessions and mentorship to support your learning and growth.
-              experience not required, recorded sessions, mentorship).
+            <CardContent className="text-sm leading-relaxed text-muted-foreground">
+              No prior experience is required. We support members through mentorship, shared resources, and recordings when available to help everyone participate.
             </CardContent>
           </Card>
         </section>

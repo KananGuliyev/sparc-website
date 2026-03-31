@@ -13,7 +13,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-xl border border-zinc-200 bg-white/80 text-zinc-950 shadow-sm backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/80 dark:text-zinc-50",
+        "rounded-xl border border-border bg-surface text-surface-foreground shadow-sm",
         size === "default" && "p-6",
         size === "sm" && "p-4",
         className
@@ -30,7 +30,7 @@ export function CardHeader({
   return (
     <div
       className={cn(
-        "mb-4 flex flex-col gap-1 border-b border-zinc-100 pb-4 dark:border-zinc-800",
+        "mb-4 flex flex-col gap-1 border-b border-border pb-4",
         className
       )}
       {...props}
@@ -60,7 +60,7 @@ export function CardDescription({
   return (
     <p
       className={cn(
-        "text-sm text-zinc-600 dark:text-zinc-400",
+        "text-sm text-muted-foreground",
         className
       )}
       {...props}
@@ -87,7 +87,7 @@ export function CardFooter({
   return (
     <div
       className={cn(
-        "mt-4 flex items-center justify-between gap-2 border-t border-zinc-100 pt-4 text-sm dark:border-zinc-800",
+        "mt-4 flex items-center justify-between gap-2 border-t border-border pt-4 text-sm",
         className
       )}
       {...props}

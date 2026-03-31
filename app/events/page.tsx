@@ -1,24 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
+import { siteContent } from "@/data/site-content";
+import { UpcomingEventCard } from "@/components/sections/upcoming-event-card";
 
 export default function EventsPage() {
-  const upcomingEvents = [
-    {
-      title: "SPARC Website Development II",
-      date: "April 1, 2026",
-      type: "Development",
-      description:
-        "Part 2: Join us for a dev discussion on the development of the SPARC website, where members will share their ideas and plans for building and maintaining the site. This is a great opportunity to get involved in web development and contribute to our online presence!",
-    },
-    {
-      title: "SPARC Website Development I",
-      date: "March 30, 2026",
-      type: "Development",
-      description:
-        "Part 1: Join us for a dev discussion on the development of the SPARC website, where members will share their ideas and plans for building and maintaining the site. This is a great opportunity to get involved in web development and contribute to our online presence!",
-    },
-  ];
-
   const pastHighlights = [
     {
       title: "SPARC Website Intro Panel",
@@ -54,76 +39,56 @@ export default function EventsPage() {
   ];
 
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
-      <div className="flex min-h-screen flex-col text-zinc-900 dark:text-zinc-50 gap-y-6 sm:gap-y-8">
+    <main id="main-content" className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
+      <div className="flex min-h-screen flex-col gap-y-8 sm:gap-y-10">
         <section className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div className="space-y-3">
-            <h1 className="text-xl sm:text-2xl font-semibold tracking-tight">Events</h1>
-            <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-              Stay posted for upcoming SPARC events! We host workshops, talks, panels, and social gatherings to build community and share knowledge. Check back here for the latest updates on what we have planned.
+            <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Events</h1>
+            <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
+              SPARC hosts workshops, speaker sessions, and project meetings throughout the semester. Join us to learn practical skills, meet peers, and contribute to club initiatives.
             </p>
           </div>
-          {/* 
-          <Button size="sm" variant="outline">
-            Add your event calendar link here
-          </Button>
-          */}
         </section>
 
-        <div className="relative h-48 sm:h-56 rounded-lg bg-transparent md:h-64">
+        <div className="relative h-56 overflow-hidden rounded-2xl md:h-72">
           <Image
-            unoptimized
             src="/sparc-events.jpeg"
-            alt="SPARC Event Image"
+            alt="Students at a SPARC event"
             fill
-            className="rounded-2xl object-cover"
+            sizes="100vw"
+            className="object-cover"
           />
         </div>
 
-        <section className="grid gap-4 sm:gap-6 md:grid-cols-[3fr,2fr] md:items-start">
+        <section className="grid gap-4 md:grid-cols-[3fr,2fr] md:items-start">
           <div className="space-y-4">
-            <h2 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
-              Upcoming
+            <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+              Upcoming Events
             </h2>
-            <div className="space-y-3 sm:space-y-4">
-              {upcomingEvents.map((event) => (
-                <Card key={event.title}>
-                  <CardHeader>
-                    <CardTitle className="text-sm sm:text-base">{event.title}</CardTitle>
-                    <CardDescription className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs">
-                      <span>{event.date}</span>
-                      <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 w-fit">
-                        {event.type}
-                      </span>
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-xs sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
-                      {event.description}
-                    </p>
-                  </CardContent>
-                </Card>
+            <div className="space-y-4">
+              {siteContent.upcomingEvents.map((event) => (
+                <UpcomingEventCard key={event.id} event={event} />
               ))}
             </div>
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
-              PAST
+            <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+              Past Highlights
             </h2>
-            <div className="space-y-3 sm:space-y-4">
+            <div className="space-y-4">
               {pastHighlights.map((event) => (
                 <Card key={event.title}>
                   <CardHeader>
-                    <CardTitle className="text-sm sm:text-base">{event.title}</CardTitle>
-                    <CardDescription className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs">
+                    <CardTitle className="text-base">{event.title}</CardTitle>
+                    <CardDescription className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                       <span>{event.date}</span>
-                      <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 w-fit">
+                      <span className="w-fit rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-foreground">
                         {event.type}
                       </span>
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-2 text-xs sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
+                  <CardContent className="space-y-2 text-sm leading-relaxed text-muted-foreground">
                     <p>{event.description}</p>
                   </CardContent>
                 </Card>
@@ -133,28 +98,28 @@ export default function EventsPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
+          <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
             Past Zoom Recordings
           </h2>
-          <div className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {pastRecordings.map((recording) => (
               <Card key={recording.title}>
                 <CardHeader>
-                  <CardTitle className="text-sm sm:text-base">{recording.title}</CardTitle>
-                  <CardDescription className="flex flex-col gap-2 text-xs sm:flex-row sm:items-center sm:justify-between">
+                  <CardTitle className="text-base">{recording.title}</CardTitle>
+                  <CardDescription className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <span>{recording.date}</span>
-                    <span className="w-fit rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 sm:text-[11px]">
+                    <span className="w-fit rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-foreground">
                       {recording.type}
                     </span>
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-3 text-xs leading-relaxed text-zinc-700 dark:text-zinc-300 sm:text-xs">
+                <CardContent className="space-y-3 text-sm leading-relaxed text-muted-foreground">
                   <p>{recording.description}</p>
                   <a
                     href={recording.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center rounded-md border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-900 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-900"
+                    className="inline-flex items-center rounded-md border border-border px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted"
                   >
                     Watch Recording
                   </a>

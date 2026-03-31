@@ -15,10 +15,8 @@ const themes = [
 export function ThemeToggle() {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => setMounted(true), []);
+  const menuId = "theme-menu";
 
   useEffect(() => {
     function onClick(e: MouseEvent) {
@@ -32,13 +30,19 @@ export function ThemeToggle() {
 
   const current = theme === "system" ? resolvedTheme : theme;
 
-  if (!mounted) {
-    return (
-      <Button type="button" size="icon-sm" variant="ghost" aria-label="Theme">
-        <Sun className="size-4" />
-      </Button>
-    );
-  }
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    }
+
+    if (open) {
+      document.addEventListener("keydown", onKeyDown);
+    }
+
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   const Icon = current === "dim" ? CloudMoon : current === "dark" ? Moon : Sun;
 
@@ -49,24 +53,34 @@ export function ThemeToggle() {
         size="icon-sm"
         variant="ghost"
         aria-label="Theme"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-controls={menuId}
         onClick={() => setOpen(!open)}
       >
         <Icon className="size-4" />
       </Button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 z-50 w-40 rounded-lg border border-zinc-200 bg-white p-1 shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
+        <div
+          id={menuId}
+          role="menu"
+          className="absolute right-0 top-full mt-2 z-50 w-40 rounded-lg border border-border bg-surface p-1 shadow-lg"
+        >
           {themes.map(({ key, label, color, borderColor }) => (
             <button
               key={key}
+              type="button"
+              role="menuitemradio"
+              aria-checked={current === key}
               onClick={() => {
                 setTheme(key);
                 setOpen(false);
               }}
-              className={`flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-sm transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 ${
+              className={`flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                 current === key
-                  ? "font-medium text-zinc-900 dark:text-zinc-50"
-                  : "text-zinc-600 dark:text-zinc-400"
+                  ? "font-medium text-foreground"
+                  : "text-muted-foreground"
               }`}
             >
               <span

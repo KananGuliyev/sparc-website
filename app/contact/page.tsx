@@ -7,52 +7,52 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
+import { SocialLinksGroup } from "@/components/sections/social-links";
+import { siteContent } from "@/data/site-content";
 
 export default function ContactPage() {
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
-      <div className="flex min-h-screen flex-col text-zinc-900 dark:text-zinc-50 gap-y-6 sm:gap-y-8">
+    <main id="main-content" className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
+      <div className="flex min-h-screen flex-col gap-y-8 sm:gap-y-10">
         <section className="space-y-3">
-          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight">Contact</h1>
-          <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-            We&apos;d love to hear from you! Whether you have questions about joining, want to propose a project, or just want to connect, feel free to reach out through any of the channels below. We&apos;re always happy to chat with students, faculty, and anyone interested in learning more about SPARC.
+          <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Contact</h1>
+          <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
+            Have a question about membership, events, or collaboration? Reach out to SPARC using the channels below and a student leader will respond.
           </p>
         </section>
 
-        <div className="relative h-48 sm:h-56 rounded-lg bg-transparent md:h-64">
+        <div className="relative h-56 overflow-hidden rounded-2xl md:h-72">
           <Image
-            unoptimized
             src="/sparc-contact.jpeg"
-            alt="SPARC Contact Image"
+            alt="SPARC club members in conversation"
             fill
-            className="rounded-2xl object-cover"
+            sizes="100vw"
+            className="object-cover"
           />
         </div>
 
-        <section className="grid gap-3 sm:gap-4 md:gap-6 grid-cols-1 md:grid-cols-2">
+        <section className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <Card size="sm">
             <CardHeader className="mb-2 border-b-0 pb-0">
-              <CardTitle className="text-sm sm:text-base">Email</CardTitle>
+              <CardTitle className="text-base">Email</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2 text-xs sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
-              <p>Contact us anytime at our official club email address: sparc@studentorgs.suffolk.edu</p>
-              <Button asChild size="sm" variant="outline" className="text-xs">
-                <a href="mailto:sparc@studentorgs.suffolk.edu">Email SPARC</a>
+            <CardContent className="space-y-2 text-sm leading-relaxed text-muted-foreground">
+              <p>Contact us anytime at our official club email address: {siteContent.club.email}</p>
+              <Button asChild variant="outline">
+                <a href={`mailto:${siteContent.club.email}`}>Email SPARC</a>
               </Button>
             </CardContent>
           </Card>
 
           <Card size="sm">
             <CardHeader className="mb-2 border-b-0 pb-0">
-              <CardTitle className="text-sm sm:text-base">Social / Discord</CardTitle>
+              <CardTitle className="text-base">Social and Community</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2 text-xs sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
+            <CardContent className="space-y-2 text-sm leading-relaxed text-muted-foreground">
               <p>
-                We are planning to set up a Discord server soon for community discussions, project collaboration, and event announcements. Stay tuned for an invite link coming soon!
+                Follow our updates and connect with members through our external channels.
               </p>
-              <Button size="sm" variant="outline" className="text-xs">
-                Join Discord
-              </Button>
+              <SocialLinksGroup links={siteContent.socials} />
             </CardContent>
           </Card>
         </section>
@@ -60,12 +60,12 @@ export default function ContactPage() {
         <section>
           <Card>
             <CardHeader>
-              <CardTitle className="text-sm sm:text-base">Location & Meeting Times</CardTitle>
-              <CardDescription className="text-xs">Where to find SPARC on campus</CardDescription>
+              <CardTitle className="text-base">Location and Meeting Times</CardTitle>
+              <CardDescription>Where to find SPARC on campus</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-2 text-xs sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
+            <CardContent className="space-y-2 text-sm leading-relaxed text-muted-foreground">
               <p>
-                We typically hold meetings in person on campus, but we are also open to virtual or hybrid formats depending on member preferences and needs. Our regular meeting times are still being finalized, but we aim to find a schedule that works for as many members as possible. We will share meeting details and locations with members once they join, and we always welcome feedback on how to make our meetings more accessible and convenient for everyone.
+                Meetings are typically held in person at Suffolk University, with virtual or hybrid options when needed. Current meeting details are shared through member announcements and event postings.
               </p>
             </CardContent>
           </Card>

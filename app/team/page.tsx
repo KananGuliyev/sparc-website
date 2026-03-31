@@ -82,11 +82,11 @@ const team = [
 
 export default function TeamPage() {
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
-      <div className="flex min-h-screen flex-col text-zinc-900 dark:text-zinc-50 gap-y-6 sm:gap-y-8">
+    <main id="main-content" className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
+      <div className="flex min-h-screen flex-col gap-y-6 sm:gap-y-8">
         <section className="space-y-3">
           <h1 className="text-xl sm:text-2xl font-semibold tracking-tight">Team</h1>
-          <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
             Meet the team behind SPARC. We are a group of diverse and passionate students at Suffolk University, united by our love for technology and AI.
           </p>
         </section>
@@ -96,11 +96,11 @@ export default function TeamPage() {
             <Card key={member.name} className="relative overflow-hidden">
               <div className="pointer-events-none absolute inset-0">
                 <Image
-                  unoptimized
                   src={member.image}
                   alt=""
                   fill
                   aria-hidden
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover opacity-20"
                 />
                 <div className="absolute inset-0 bg-white/75 dark:bg-zinc-950/75" />
@@ -110,10 +110,10 @@ export default function TeamPage() {
                 <div className="flex items-start gap-2">
                   <div className="relative w-16 sm:w-24 aspect-square shrink-0 overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900">
                     <Image
-                      unoptimized
                       src={member.image}
                       alt={member.name}
                       fill
+                      sizes="96px"
                       className="object-cover"
                     />
                   </div>

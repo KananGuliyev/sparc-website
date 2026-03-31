@@ -56,28 +56,28 @@ export default function ProjectsPage() {
   ];
 
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
-      <div className="flex min-h-screen flex-col text-zinc-900 dark:text-zinc-50 gap-y-6 sm:gap-y-8">
+    <main id="main-content" className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
+      <div className="flex min-h-screen flex-col gap-y-6 sm:gap-y-8">
         <section className="space-y-3">
           <h1 className="text-xl sm:text-2xl font-semibold tracking-tight">Projects</h1>
-          <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
             Learn about our real world applications, research, and tools built by SPARC members. Our projects are hands-on opportunities to apply machine learning concepts, collaborate with peers, and create impactful solutions.
           </p>
         </section>
 
-        <div className="relative h-48 sm:h-56 rounded-lg bg-transparent md:h-64">
+        <div className="relative h-48 rounded-lg bg-transparent sm:h-56 md:h-64">
           <Image
-            unoptimized
             src="/sparc-projects.jpeg"
             alt="SPARC Projects Image"
             fill
+            sizes="100vw"
             className="rounded-2xl object-cover"
           />
         </div>
 
         <section className="space-y-4">
-          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight">Catalog</h1>
-          <p className="max-w-2xl mb-8 text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">Catalog</h2>
+          <p className="max-w-2xl mb-8 text-sm leading-relaxed text-muted-foreground sm:text-base">
             What we have built so far and what we're planning next. Each project is a collaborative effort by SPARC members to apply AI concepts to real problems and create something meaningful for our community.
           </p>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 md:gap-6">
@@ -89,10 +89,10 @@ export default function ProjectsPage() {
               >
                 <div className="relative -mx-4 -mt-4 mb-4 h-36 overflow-hidden sm:h-40">
                   <Image
-                    unoptimized
                     src={project.image}
                     alt={`${project.name} preview`}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>

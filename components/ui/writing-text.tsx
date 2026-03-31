@@ -24,6 +24,15 @@ function WritingText({
 }: WritingTextProps) {
   const localRef = React.useRef<HTMLSpanElement>(null)
   React.useImperativeHandle(ref as any, () => localRef.current as HTMLSpanElement)
+  const [reducedMotion, setReducedMotion] = React.useState(false)
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
+    setReducedMotion(mediaQuery.matches)
+    const handleChange = (event: MediaQueryListEvent) => setReducedMotion(event.matches)
+    mediaQuery.addEventListener("change", handleChange)
+    return () => mediaQuery.removeEventListener("change", handleChange)
+  }, [])
 
   const inViewResult = useInView(localRef, {
     once: inViewOnce,
@@ -39,13 +48,17 @@ function WritingText({
         <motion.span
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           className="inline-block will-change-transform will-change-opacity"
-          initial={{ opacity: 0, y: 10 }}
+          initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
           key={index}
           style={{ marginRight: spacing }}
-          transition={{
-            ...transition,
-            delay: index * (transition?.delay ?? 0),
-          }}
+          transition={
+            reducedMotion
+              ? { duration: 0 }
+              : {
+                  ...transition,
+                  delay: index * (transition?.delay ?? 0),
+                }
+          }
         >
           {word}{" "}
         </motion.span>

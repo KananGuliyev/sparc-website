@@ -5,23 +5,25 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { siteContent } from "@/data/site-content";
 
 export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const mobileMenuId = "mobile-primary-navigation";
 
     return (
-        <header className="border-b border-zinc-200 bg-white/80 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/80">
+        <header className="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur-sm">
             <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:gap-6 sm:px-6 lg:px-8">
                 <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0">
-                    <div className="flex size-8 sm:size-9 items-center justify-center rounded-lg bg-zinc-900 text-xs sm:text-sm font-semibold text-zinc-50 shadow-sm dark:bg-zinc-50 dark:text-zinc-900">
+                    <div className="flex size-8 sm:size-9 items-center justify-center rounded-lg bg-primary text-xs sm:text-sm font-semibold text-primary-foreground shadow-sm">
                         SP
                     </div>
                     <div className="hidden sm:flex flex-col leading-tight">
-                        <span className="text-sm font-semibold tracking-tight">
-                            SPARC
+                        <span className="text-sm font-semibold tracking-tight text-foreground">
+                            {siteContent.club.shortName}
                         </span>
-                        <span className="text-[11px] text-zinc-500 dark:text-zinc-400">
-                            Suffolk Programming, AI & Research Club
+                        <span className="text-xs text-muted-foreground">
+                            {siteContent.club.tagline}
                         </span>
                     </div>
                 </Link>
@@ -50,6 +52,9 @@ export default function Navbar() {
                         size="icon-sm"
                         className="lg:hidden"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        aria-controls={mobileMenuId}
+                        aria-expanded={mobileMenuOpen}
+                        aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
                     >
                         {mobileMenuOpen ? (
                             <X className="size-5" />
@@ -61,8 +66,8 @@ export default function Navbar() {
             </div>
 
             {mobileMenuOpen && (
-                <div className="border-t border-zinc-200 bg-white/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95 lg:hidden">
-                    <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 text-sm font-medium">
+                <div className="border-t border-border bg-surface/95 backdrop-blur-sm lg:hidden">
+                    <nav id={mobileMenuId} className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 text-sm font-medium">
                         <MobileNavLink href="/" onClick={() => setMobileMenuOpen(false)}>Home</MobileNavLink>
                         <MobileNavLink href="/about" onClick={() => setMobileMenuOpen(false)}>About</MobileNavLink>
                         <MobileNavLink href="/team" onClick={() => setMobileMenuOpen(false)}>Team</MobileNavLink>
@@ -98,7 +103,7 @@ function NavLink({
       asChild
       variant="ghost"
       size="sm"
-      className="px-3 text-sm font-medium text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-900 dark:hover:text-zinc-50"
+      className="px-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
     >
       <Link href={href}>{children}</Link>
     </Button>
@@ -118,7 +123,7 @@ function MobileNavLink({
     <Button
       asChild
       variant="ghost"
-      className="justify-start px-3 text-sm font-medium text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-900 dark:hover:text-zinc-50"
+      className="justify-start px-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
       onClick={onClick}
     >
       <Link href={href}>{children}</Link>

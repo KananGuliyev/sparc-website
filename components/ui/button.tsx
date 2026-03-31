@@ -20,20 +20,20 @@ export interface ButtonProps
 }
 
 const baseStyles =
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50";
 
 const variantStyles: Record<ButtonVariant, string> = {
   default:
-    "bg-zinc-900 text-zinc-50 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200",
+    "bg-primary text-primary-foreground hover:opacity-95",
   outline:
-    "border border-zinc-300 bg-transparent text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-900",
+    "border border-border bg-surface text-foreground hover:bg-muted",
   ghost:
-    "bg-transparent text-zinc-900 hover:bg-zinc-100 dark:text-zinc-100 dark:hover:bg-zinc-900",
+    "bg-transparent text-foreground hover:bg-muted",
   destructive:
     "bg-red-600 text-zinc-50 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600",
   secondary:
-    "bg-zinc-100 text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-700",
-  link: "text-zinc-900 underline-offset-4 hover:underline dark:text-zinc-100",
+    "bg-muted text-foreground hover:brightness-95",
+  link: "text-primary underline-offset-4 hover:underline",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

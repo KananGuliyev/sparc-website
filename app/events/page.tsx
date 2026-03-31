@@ -1,9 +1,25 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export default function EventsPage() {
   const upcomingEvents = [
+    {
+      title: "SPARC Website Development II",
+      date: "April 1, 2026",
+      type: "Development",
+      description:
+        "Part 2: Join us for a dev discussion on the development of the SPARC website, where members will share their ideas and plans for building and maintaining the site. This is a great opportunity to get involved in web development and contribute to our online presence!",
+    },
+    {
+      title: "SPARC Website Development I",
+      date: "March 30, 2026",
+      type: "Development",
+      description:
+        "Part 1: Join us for a dev discussion on the development of the SPARC website, where members will share their ideas and plans for building and maintaining the site. This is a great opportunity to get involved in web development and contribute to our online presence!",
+    },
+  ];
+
+  const pastHighlights = [
     {
       title: "SPARC Website Intro Panel",
       date: "February 12, 2026",
@@ -11,15 +27,31 @@ export default function EventsPage() {
       description:
         "Join us for an introductory panel discussion about the SPARC website and how members can get involved.",
     },
+    {
+      title: "Professor Z. Huang's Guest Lecture on ML",
+      date: "February 5, 2026",
+      type: "Guest",
+      description:
+        "We had the privilege of having Professor Z. Huang, a professor in the Computer Science department, for a guest lecture on machine learning research. Professor Huang shared insights from their latest work in natural language processing and engaged in a lively Q&A session with our members. It was an inspiring event that sparked great discussions and motivated many of us to dive deeper into ML research.",
+    }
   ];
 
-  const pastHighlight = {
-    title: "Professor Z. Huang's Guest Lecture on ML",
-    date: "February 5, 2026",
-    type: "Guest",
-    description:
-      "We had the privilege of having Professor Z. Huang, a professor in the Computer Science department, for a guest lecture on machine learning research. Professor Huang shared insights from their latest work in natural language processing and engaged in a lively Q&A session with our members. It was an inspiring event that sparked great discussions and motivated many of us to dive deeper into ML research.",
-  };
+  const pastRecordings = [
+    {
+      title: "Meeting 1",
+      date: "February 26, 2026",
+      type: "Zoom Recording",
+      link: "https://suffolk.zoom.us/rec/play/YM0vPAyEnmg06qQFb73LIOqeUnd9X67yeQSyNJXdzkEwY0vVwo9RndIrFkl0rmV4UJTNAsH_mx9T8jj5.YWen7KysJWaujsOP?eagerLoadZvaPages=sidemenu.billing.plan_management&accessLevel=meeting&canPlayFromShare=true&from=share_recording_detail&continueMode=true&oldStyle=true&componentName=rec-play&originRequestUrl=https%3A%2F%2Fsuffolk.zoom.us%2Frec%2Fshare%2FjGnuwrQ-G0zXyDXA59_caQ3csajOglqWP7PbkDq0uKWIp-dY-Ty_vTLrIay41wCv.f6L6cPvH2Zs29L60",
+      description: "Development meeting recording covering project updates and implementation discussion.",
+    },
+    {
+      title: "Meeting 2",
+      date: "March 24, 2026",
+      type: "Zoom Recording",
+      link: "https://suffolk.zoom.us/rec/play/OVjfXxrQKRNvOOhjp7zAcx5pHCTUHQ3w2FhEN0SRORkWo7BcFtoH3edi0NKLOeO4xyrcy3jBIX4PxW_n.9Wg9uEz-vEWMVDfa?eagerLoadZvaPages=sidemenu.billing.plan_management&accessLevel=meeting&canPlayFromShare=true&from=share_recording_detail&continueMode=true&oldStyle=true&componentName=rec-play&originRequestUrl=https%3A%2F%2Fsuffolk.zoom.us%2Frec%2Fshare%2FdTUmT8tGpGdRxRpJPIiAIOEHpPA9us7CADcmqsHNAOmGqovD0qOOh9ZsQA_VcujY.BjJrVRW8NNpaCBAk",
+      description: "Development meeting recording focused on planning and next milestones.",
+    },
+  ];
 
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
@@ -75,24 +107,61 @@ export default function EventsPage() {
             </div>
           </div>
 
-          <h2 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
-            PAST
-          </h2>
+          <div className="space-y-4">
+            <h2 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
+              PAST
+            </h2>
+            <div className="space-y-3 sm:space-y-4">
+              {pastHighlights.map((event) => (
+                <Card key={event.title}>
+                  <CardHeader>
+                    <CardTitle className="text-sm sm:text-base">{event.title}</CardTitle>
+                    <CardDescription className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs">
+                      <span>{event.date}</span>
+                      <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 w-fit">
+                        {event.type}
+                      </span>
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-2 text-xs sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
+                    <p>{event.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-sm sm:text-base">{pastHighlight.title}</CardTitle>
-              <CardDescription className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs">
-                <span>{pastHighlight.date}</span>
-                <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 w-fit">
-                  {pastHighlight.type}
-                </span>
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2 text-xs sm:text-xs leading-relaxed text-zinc-700 dark:text-zinc-300">
-              <p>{pastHighlight.description}</p>
-            </CardContent>
-          </Card>
+        <section className="space-y-4">
+          <h2 className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
+            Past Zoom Recordings
+          </h2>
+          <div className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2">
+            {pastRecordings.map((recording) => (
+              <Card key={recording.title}>
+                <CardHeader>
+                  <CardTitle className="text-sm sm:text-base">{recording.title}</CardTitle>
+                  <CardDescription className="flex flex-col gap-2 text-xs sm:flex-row sm:items-center sm:justify-between">
+                    <span>{recording.date}</span>
+                    <span className="w-fit rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 sm:text-[11px]">
+                      {recording.type}
+                    </span>
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3 text-xs leading-relaxed text-zinc-700 dark:text-zinc-300 sm:text-xs">
+                  <p>{recording.description}</p>
+                  <a
+                    href={recording.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center rounded-md border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-900 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-900"
+                  >
+                    Watch Recording
+                  </a>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </section>
       </div>
     </main>
